@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="WorldQuiz Store - Professional quiz platform for learning, training, and performance assessment."
+    />
+    <title>WorldQuiz Store | Quiz Ready For Growth</title>
+    <style>
+      :root {
+        --bg: #140d07;
+        --bg-soft: #22150d;
+        --surface: #261912;
+        --text: #fff3ea;
+        --muted: #d4b19b;
+        --primary: #ff8a3d;
+        --primary-hover: #e56f23;
+        --line: #5f3a26;
+        --success: #ffd37a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        line-height: 1.6;
+        background: radial-gradient(circle at 10% 0%, #3a2315 0%, var(--bg) 43%);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .container {
+        width: min(1140px, 92%);
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(8px);
+        background: rgba(7, 13, 24, 0.8);
+        border-bottom: 1px solid rgba(164, 182, 220, 0.16);
+      }
+
+      .nav-wrap {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav a:hover {
+        color: var(--text);
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 16px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s ease;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        color: #fff;
+        background: var(--primary);
+        box-shadow: 0 8px 24px rgba(255, 138, 61, 0.3);
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-hover);
+      }
+
+      .btn-outline {
+        color: var(--text);
+        border: 1px solid var(--line);
+        background: transparent;
+      }
+
+      .btn-outline:hover {
+        border-color: #8a5538;
+        background: rgba(255, 138, 61, 0.1);
+      }
+
+      .hero {
+        padding: 74px 0 44px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.82rem;
+        color: #ffe8d5;
+        background: rgba(255, 138, 61, 0.14);
+        border: 1px solid rgba(255, 138, 61, 0.36);
+        border-radius: 999px;
+        padding: 6px 12px;
+      }
+
+      .hero h1 {
+        margin: 14px 0 14px;
+        font-size: clamp(2rem, 5vw, 3.35rem);
+        line-height: 1.15;
+      }
+
+      .hero p {
+        margin: 0;
+        max-width: 640px;
+        color: var(--muted);
+        font-size: 1.03rem;
+      }
+
+      .hero-actions {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-stats {
+        margin-top: 22px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: var(--muted);
+      }
+
+      .hero-stats strong {
+        display: block;
+        color: var(--text);
+        font-size: 1.16rem;
+      }
+
+      .preview {
+        border-radius: 16px;
+        background: linear-gradient(175deg, #2f1d14 0%, #21150f 100%);
+        border: 1px solid var(--line);
+        padding: 18px;
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.3);
+      }
+
+      .preview h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .preview p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .preview ul {
+        margin: 14px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .preview li {
+        padding: 10px 0;
+        border-bottom: 1px dashed rgba(164, 182, 220, 0.2);
+        color: #d6e0f8;
+        font-size: 0.92rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .preview li:last-child {
+        border-bottom: 0;
+      }
+
+      .success {
+        color: var(--success);
+      }
+
+      .section {
+        padding: 38px 0;
+      }
+
+      .section-title {
+        margin: 0 0 16px;
+        font-size: clamp(1.45rem, 4vw, 2rem);
+      }
+
+      .section-copy {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .trust {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 20px;
+      }
+
+      .trust-item {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        color: #d9e5ff;
+        background: rgba(18, 29, 51, 0.55);
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .feature {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        background: linear-gradient(180deg, rgba(255, 138, 61, 0.08), rgba(38, 25, 18, 0.85));
+      }
+
+      .feature h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .feature p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .plans {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .plan {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        background: var(--surface);
+      }
+
+      .plan.highlight {
+        border-color: rgba(255, 138, 61, 0.72);
+        box-shadow: 0 10px 30px rgba(255, 138, 61, 0.2);
+      }
+
+      .plan h3 {
+        margin: 0;
+        font-size: 1.05rem;
+      }
+
+      .price {
+        margin: 8px 0;
+        font-size: 1.9rem;
+        font-weight: 700;
+      }
+
+      .price span {
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .plan ul {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: var(--muted);
+      }
+
+      .plan li + li {
+        margin-top: 6px;
+      }
+
+      .cta-panel {
+        margin: 44px 0 58px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 26px;
+        background: linear-gradient(130deg, rgba(255, 138, 61, 0.18), rgba(38, 25, 18, 0.88));
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .cta-panel h2 {
+        margin: 0;
+        font-size: clamp(1.3rem, 3vw, 1.9rem);
+      }
+
+      .cta-panel p {
+        margin: 8px 0 0;
+        color: #d2def8;
+      }
+
+      footer {
+        border-top: 1px solid rgba(164, 182, 220, 0.16);
+        color: var(--muted);
+        text-align: center;
+        padding: 18px 0 28px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .features,
+        .plans,
+        .cta-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .trust {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .nav {
+          display: none;
+        }
+
+        .hero {
+          padding-top: 46px;
+        }
+
+        .trust {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav-wrap">
+        <p class="brand">WorldQuiz Store</p>
+        <nav class="nav">
+          <a href="#features">Features</a>
+          <a href="#plans">Pricing</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <a href="#plans" class="btn btn-primary">Get Started</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <div class="hero-grid">
+          <div>
+            <span class="badge">Quiz Platform for Learning & Training</span>
+            <h1>Turn your knowledge into a professional learning experience.</h1>
+            <p>
+              WorldQuiz Store provides a curated quiz library and modern assessment tools that help training teams,
+              educators, and businesses launch faster, measure outcomes clearly, and scale with confidence.
+            </p>
+            <div class="hero-actions">
+              <a href="#plans" class="btn btn-primary">View Plans</a>
+              <a href="#features" class="btn btn-outline">Explore Features</a>
+            </div>
+            <div class="hero-stats">
+              <div><strong>1,200+</strong>topic-based quiz packs</div>
+              <div><strong>96%</strong>customer satisfaction</div>
+              <div><strong>24/7</strong>technical support</div>
+            </div>
+          </div>
+
+          <aside class="preview">
+            <h3>Sample Dashboard</h3>
+            <p>Track learning quality in real time.</p>
+            <ul>
+              <li><span>Course completion rate</span><strong class="success">87%</strong></li>
+              <li><span>Average score</span><strong>8.6 / 10</strong></li>
+              <li><span>Assessments this week</span><strong>143</strong></li>
+              <li><span>Active learners</span><strong>2,019</strong></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section container">
+        <h2 class="section-title">Trusted by diverse learning organizations</h2>
+        <p class="section-copy">From small classrooms to large internal training programs.</p>
+        <div class="trust">
+          <div class="trust-item">Schools</div>
+          <div class="trust-item">Training Centers</div>
+          <div class="trust-item">Enterprises</div>
+          <div class="trust-item">Education Organizations</div>
+        </div>
+      </section>
+
+      <section class="section container" id="features">
+        <h2 class="section-title">Core Features</h2>
+        <p class="section-copy">Built for frontend, training, and operations teams to work efficiently together.</p>
+        <div class="features">
+          <article class="feature">
+            <h3>Curated Quiz Library</h3>
+            <p>Well-structured content aligned with real-world topics and easy to tailor to your needs.</p>
+          </article>
+          <article class="feature">
+            <h3>Difficulty Levels</h3>
+            <p>Progressive paths from beginner to advanced to keep learners motivated and improving.</p>
+          </article>
+          <article class="feature">
+            <h3>Insightful Dashboard</h3>
+            <p>Monitor scores, completion rates, and assessment time to optimize training outcomes.</p>
+          </article>
+          <article class="feature">
+            <h3>Cross-Device Ready</h3>
+            <p>Deliver smooth experiences on desktop, tablet, and mobile without extra setup.</p>
+          </article>
+          <article class="feature">
+            <h3>Scalable Content</h3>
+            <p>Expand quickly with new topics and question sets to support content growth goals.</p>
+          </article>
+          <article class="feature">
+            <h3>Secure Data Handling</h3>
+            <p>Manage access and learner data with professional-grade operational standards.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="plans">
+        <h2 class="section-title">Plans</h2>
+        <p class="section-copy">Pick the package that matches your goals and scale.</p>
+        <div class="plans">
+          <article class="plan">
+            <h3>Starter</h3>
+            <p class="price">$19 <span>/ month</span></p>
+            <ul>
+              <li>150 ready-to-use quiz sets</li>
+              <li>Manage up to 300 learners</li>
+              <li>Essential reporting</li>
+            </ul>
+          </article>
+          <article class="plan highlight">
+            <h3>Growth</h3>
+            <p class="price">$49 <span>/ month</span></p>
+            <ul>
+              <li>500+ advanced quiz collections</li>
+              <li>Segmented learner dashboards</li>
+              <li>Priority support during business hours</li>
+            </ul>
+          </article>
+          <article class="plan">
+            <h3>Enterprise</h3>
+            <p class="price">Custom <span>pricing</span></p>
+            <ul>
+              <li>Custom content repository</li>
+              <li>Tailored training workflows</li>
+              <li>Dedicated technical support</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="container" id="contact">
+        <div class="cta-panel">
+          <div>
+            <h2>Ready to upgrade your learning experience with WorldQuiz Store?</h2>
+            <p>Share your details and our team will recommend the best plan within 24 hours.</p>
+          </div>
+          <button class="btn btn-primary" type="button">Request a Consultation</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">© 2026 WorldQuiz Store. All rights reserved.</div>
+    </footer>
+  </body>
+</html>
