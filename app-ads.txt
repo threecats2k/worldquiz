@@ -4986,3 +4986,9 @@ freewheel.tv,535400-r-523319,RESELLER,74e8e47458f74754
 lemmatechnologies.com,2448,RESELLER,7829010c5bebd1fb
 openx.com,566769495,RESELLER,6a698e2ec38604c6
 qntv.io,11820526,RESELLER
+#update 27/10/2026
+applovin.com, 75032bab014eb00c22edb98676c9b9b4, DIRECT
+bidease.com, bidease_seller_26, RESELLER
+bigo.sg, qyfoptvec9, RESELLER
+taurusx.com, 70119, RESELLER
+video.unrulymedia.com, 841707281, RESELLER, 98c21ef9a666c68b
